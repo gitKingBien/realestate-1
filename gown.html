@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elegant Wedding Gowns</title>
+
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      height: 95vh;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    .hero .cta {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero .contact-info {
+      margin-top: 25px;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+    }
+
+    /* Ensure equal card height */
+    .card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card img {
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .card-body {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    footer {
+      background: #222;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div>
+    <h1>Your Dream Wedding Dress Starts Here</h1>
+    <p>Elegant, timeless gowns crafted for unforgettable moments</p>
+
+    <div class="cta">
+      <a href="#shop" class="btn btn-light">Browse Collection</a>
+      <a href="#" class="btn btn-outline-light">Book Appointment</a>
+    </div>
+
+    <div class="contact-info">
+      <p>Email: hello@bridalboutique.com | Phone: +63 912 345 6789</p>
+    </div>
+  </div>
+</section>
+
+<!-- SHOP SECTION -->
+<section class="container py-5" id="shop">
+  <h2 class="text-center mb-4">Featured Collection</h2>
+  <div class="row g-4">
+
+    <!-- 6 IDENTICAL STYLE CARDS -->
+
+    <!-- CARD TEMPLATE REUSED -->
+    
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card shadow h-100">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" class="card-img-top">
+        <div class="card-body text-center">
+          <h5 class="card-title">Elegant Bridal Gown</h5>
+          <p class="text-muted">Timeless, modern, and perfect for your big day</p>
+          <p class="fw-bold text-warning">$799</p>
+          <a href="#" class="btn btn-dark mt-auto">Inquire Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card shadow h-100">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" class="card-img-top">
+        <div class="card-body text-center">
+          <h5 class="card-title">Classic Lace Gown</h5>
+          <p class="text-muted">Elegant lace design with timeless beauty</p>
+          <p class="fw-bold text-warning">$699</p>
+          <a href="#" class="btn btn-dark mt-auto">Inquire Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card shadow h-100">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" class="card-img-top">
+        <div class="card-body text-center">
+          <h5 class="card-title">Modern Silk Dress</h5>
+          <p class="text-muted">Smooth silk finish for a contemporary bride</p>
+          <p class="fw-bold text-warning">$899</p>
+          <a href="#" class="btn btn-dark mt-auto">Inquire Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card shadow h-100">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" class="card-img-top">
+        <div class="card-body text-center">
+          <h5 class="card-title">Minimalist Bridal Dress</h5>
+          <p class="text-muted">Clean and simple elegance for modern weddings</p>
+          <p class="fw-bold text-warning">$649</p>
+          <a href="#" class="btn btn-dark mt-auto">Inquire Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card shadow h-100">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" class="card-img-top">
+        <div class="card-body text-center">
+          <h5 class="card-title">Princess Ball Gown</h5>
+          <p class="text-muted">Full skirt design for a fairytale wedding</p>
+          <p class="fw-bold text-warning">$999</p>
+          <a href="#" class="btn btn-dark mt-auto">Inquire Now</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card shadow h-100">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" class="card-img-top">
+        <div class="card-body text-center">
+          <h5 class="card-title">Vintage Romantic Dress</h5>
+          <p class="text-muted">Soft, romantic tones with vintage charm</p>
+          <p class="fw-bold text-warning">$749</p>
+          <a href="#" class="btn btn-dark mt-auto">Inquire Now</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="container text-center py-5">
+  <h2 class="mb-3">About Us</h2>
+  <p class="mx-auto" style="max-width:700px;">
+    We specialize in elegant and timeless wedding gowns crafted for modern brides. Our mission is to make every bride feel confident, beautiful, and unforgettable.
+  </p>
+</section>
+
+<footer>
+  <p>&copy; 2026 Elegant Wedding Gowns</p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
