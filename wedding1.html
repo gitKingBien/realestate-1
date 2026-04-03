@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sofia & Gabriel — An Eternal Evening</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;1,6..96,300;1,6..96,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root{
+      --black:   #0A0806;
+      --ink:     #161210;
+      --gold:    #C9A84C;
+      --gold-lt: #E2C97E;
+      --gold-dk: #8B6914;
+      --warm:    #F5EDD8;
+      --cream:   #FAF7F0;
+      --muted:   #9A8F7A;
+      --white:   #FFFFFF;
+    }
+
+    html{scroll-behavior:smooth}
+    body{font-family:'Outfit',sans-serif;background:var(--black);color:var(--warm);overflow-x:hidden}
+
+    /* grain */
+    body::after{
+      content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+      opacity:.3;mix-blend-mode:overlay;
+    }
+
+    /* ═══ HERO ═══ */
+    .hero{
+      position:relative;height:100vh;min-height:620px;
+      display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;overflow:hidden;
+    }
+    .hero-img{
+      position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+      filter:brightness(.38) saturate(.8);
+      animation:slowZoom 20s ease-in-out infinite alternate;
+    }
+    @keyframes slowZoom{from{transform:scale(1.03)}to{transform:scale(1.12)}}
+    .hero-veil{
+      position:absolute;inset:0;
+      background:
+        linear-gradient(to bottom,rgba(10,8,6,.55) 0%,transparent 25%,transparent 55%,rgba(10,8,6,.9) 100%),
+        radial-gradient(ellipse 70% 50% at 50% 45%,rgba(201,168,76,.06),transparent);
+    }
+    /* frame */
+    .hero-frame{position:absolute;inset:26px;border:1px solid rgba(201,168,76,.28);pointer-events:none}
+    .hero-frame::before{content:'';position:absolute;inset:6px;border:1px solid rgba(201,168,76,.12)}
+    .corner-gem{position:absolute;width:16px;height:16px;border-color:var(--gold);border-style:solid}
+    .tl{top:-1px;left:-1px;border-width:1.5px 0 0 1.5px}
+    .tr{top:-1px;right:-1px;border-width:1.5px 1.5px 0 0}
+    .bl{bottom:-1px;left:-1px;border-width:0 0 1.5px 1.5px}
+    .br{bottom:-1px;right:-1px;border-width:0 1.5px 1.5px 0}
+
+    .hero-content{position:relative;z-index:2;padding:0 1.5rem}
+    .hero-eyebrow{
+      font-size:.6rem;letter-spacing:.45em;text-transform:uppercase;
+      color:var(--gold-lt);margin-bottom:2rem;
+      opacity:0;animation:fadeUp .9s .3s forwards;
+    }
+    .hero-names{
+      font-family:'Bodoni Moda',serif;font-weight:300;
+      font-size:clamp(4rem,12vw,9.5rem);line-height:.92;
+      color:var(--white);letter-spacing:-.015em;
+      text-shadow:0 6px 50px rgba(0,0,0,.7);
+      opacity:0;animation:fadeUp 1s .5s forwards;
+    }
+    .hero-names em{font-style:italic;color:var(--gold-lt)}
+    .hero-amp{
+      display:block;font-family:'Bodoni Moda',serif;font-style:italic;font-weight:300;
+      font-size:clamp(2rem,5vw,4rem);color:var(--gold);margin:.35rem 0;
+      opacity:0;animation:fadeUp 1s .65s forwards;
+    }
+    .hero-rule{
+      display:flex;align-items:center;justify-content:center;gap:1.2rem;
+      margin:2rem 0 1.4rem;
+      opacity:0;animation:fadeUp .8s .85s forwards;
+    }
+    .hero-rule span{height:1px;width:72px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+    .hero-rule svg{color:var(--gold);width:18px;height:18px}
+    .hero-date{
+      font-family:'Bodoni Moda',serif;font-style:italic;font-weight:300;
+      font-size:clamp(.95rem,2vw,1.45rem);color:var(--warm);letter-spacing:.05em;
+      opacity:0;animation:fadeUp .8s 1s forwards;
+    }
+    .hero-venue{
+      font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;
+      color:var(--gold);margin-top:.7rem;
+      opacity:0;animation:fadeUp .8s 1.15s forwards;
+    }
+    .hero-scroll{
+      position:absolute;bottom:2.4rem;left:50%;transform:translateX(-50%);
+      z-index:2;display:flex;flex-direction:column;align-items:center;gap:.6rem;
+      opacity:0;animation:fadeUp .8s 1.5s forwards;
+    }
+    .hero-scroll span{font-size:.56rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+    .scroll-dot{width:1px;height:48px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sdot 2.2s ease-in-out infinite}
+    @keyframes sdot{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.1)}}
+
+    /* ═══ COUNTDOWN ═══ */
+    .countdown{
+      background:var(--ink);padding:5rem 2rem;text-align:center;position:relative;overflow:hidden;
+    }
+    .countdown::before,.countdown::after{
+      content:'';position:absolute;left:8%;right:8%;height:1px;
+      background:linear-gradient(to right,transparent,var(--gold),transparent);
+    }
+    .countdown::before{top:0}.countdown::after{bottom:0}
+    .cd-label{font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:3rem}
+    .cd-wrap{display:flex;justify-content:center;gap:clamp(1rem,4vw,5rem)}
+    .cd-block{display:flex;flex-direction:column;align-items:center}
+    .cd-num{
+      font-family:'Bodoni Moda',serif;font-weight:300;
+      font-size:clamp(3.5rem,9vw,7rem);line-height:1;min-width:2ch;text-align:center;
+      background:linear-gradient(170deg,var(--white) 40%,rgba(255,255,255,.55));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .cd-unit{font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-top:.5rem}
+    .cd-sep{
+      font-family:'Bodoni Moda',serif;font-size:clamp(2rem,5vw,4rem);
+      color:var(--gold);opacity:.35;align-self:flex-start;padding-top:.2em;
+    }
+
+    /* ═══ SHARED ═══ */
+    .section{padding:7rem 2rem;position:relative}
+    .sec-inner{max-width:1060px;margin:0 auto}
+    .sec-tag{
+      font-size:.58rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);
+      display:flex;align-items:center;gap:1rem;justify-content:center;margin-bottom:.9rem;
+    }
+    .sec-tag::before,.sec-tag::after{content:'';height:1px;width:44px;background:linear-gradient(to right,transparent,var(--gold))}
+    .sec-tag::after{background:linear-gradient(to left,transparent,var(--gold))}
+    .sec-title{
+      font-family:'Bodoni Moda',serif;font-weight:300;
+      font-size:clamp(2.2rem,5vw,4rem);color:var(--white);text-align:center;line-height:1.1;
+    }
+    .sec-title em{font-style:italic;color:var(--gold-lt)}
+
+    /* ═══ STORY ═══ */
+    .story{background:var(--black)}
+    .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:4rem}
+    .story-photo{position:relative;overflow:hidden;aspect-ratio:3/4}
+    .story-photo img{
+      width:100%;height:100%;object-fit:cover;
+      filter:brightness(.7) saturate(.85);
+      transition:transform .8s ease,filter .5s ease;display:block;
+    }
+    .story-photo:hover img{transform:scale(1.06);filter:brightness(.88) saturate(1)}
+    .story-photo-caption{
+      position:absolute;bottom:0;left:0;right:0;
+      padding:2.5rem 2rem 1.8rem;
+      background:linear-gradient(to top,rgba(10,8,6,.92),transparent);
+    }
+    .photo-year{font-family:'Bodoni Moda',serif;font-style:italic;font-size:2.2rem;color:var(--gold);line-height:1}
+    .photo-label{font-size:.7rem;letter-spacing:.14em;color:rgba(245,237,216,.65);margin-top:.3rem}
+    .story-text-block{
+      background:var(--ink);padding:3.8rem;
+      display:flex;flex-direction:column;justify-content:center;
+    }
+    .story-quote{
+      font-family:'Bodoni Moda',serif;font-style:italic;font-weight:300;
+      font-size:clamp(1.15rem,2.2vw,1.75rem);color:var(--white);line-height:1.55;margin-bottom:1.8rem;
+    }
+    .story-quote::before{content:'\201C';color:var(--gold);font-size:3.5rem;line-height:.4;display:block;margin-bottom:.6rem}
+    .story-body{font-size:.86rem;font-weight:300;color:var(--muted);line-height:2}
+    .story-signature{
+      font-family:'Bodoni Moda',serif;font-style:italic;
+      font-size:1.7rem;color:var(--gold-lt);margin-top:2rem;
+    }
+    .gallery-row{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:3px;margin-top:3px}
+    .gallery-row .story-photo{aspect-ratio:unset;min-height:280px}
+
+    /* ═══ SCHEDULE ═══ */
+    .schedule{background:var(--ink)}
+    .sched-grid{
+      display:grid;grid-template-columns:repeat(4,1fr);
+      gap:1px;background:rgba(201,168,76,.12);margin-top:4rem;
+    }
+    .sched-card{
+      background:var(--black);padding:3rem 2rem;text-align:center;
+      position:relative;overflow:hidden;transition:background .4s;
+    }
+    .sched-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:2px;
+      background:linear-gradient(to right,transparent,var(--gold),transparent);
+      transform:scaleX(0);transition:transform .45s ease;
+    }
+    .sched-card:hover{background:rgba(201,168,76,.04)}
+    .sched-card:hover::before{transform:scaleX(1)}
+    .sched-num{
+      font-family:'Bodoni Moda',serif;font-style:italic;
+      font-size:.8rem;color:var(--gold);letter-spacing:.1em;margin-bottom:.9rem;
+    }
+    .sched-time{
+      font-family:'Bodoni Moda',serif;font-weight:300;
+      font-size:2.4rem;color:var(--white);line-height:1;
+    }
+    .sched-pm{font-size:1rem;color:var(--muted)}
+    .sched-name{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:.8rem 0 .6rem}
+    .sched-note{font-size:.76rem;color:var(--muted);line-height:1.65}
+
+    /* ═══ RSVP ═══ */
+    .rsvp{background:var(--black);position:relative;overflow:hidden}
+    .rsvp::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse 65% 70% at 50% 0%,rgba(201,168,76,.07),transparent 65%);
+    }
+    .rsvp-inner{max-width:680px;margin:3.5rem auto 0;position:relative}
+    .rsvp-box{
+      background:var(--ink);border:1px solid rgba(201,168,76,.18);padding:4rem;position:relative;
+    }
+    /* four corner accents */
+    .rsvp-box .ca{position:absolute;width:28px;height:28px;border-color:var(--gold);border-style:solid}
+    .rsvp-box .ca.tl{top:-1px;left:-1px;border-width:1.5px 0 0 1.5px}
+    .rsvp-box .ca.tr{top:-1px;right:-1px;border-width:1.5px 1.5px 0 0}
+    .rsvp-box .ca.bl{bottom:-1px;left:-1px;border-width:0 0 1.5px 1.5px}
+    .rsvp-box .ca.br{bottom:-1px;right:-1px;border-width:0 1.5px 1.5px 0}
+
+    .rsvp-note{font-size:.83rem;color:var(--muted);line-height:1.85;text-align:center;margin-bottom:2.5rem;font-weight:300}
+    .rsvp-note strong{color:var(--gold-lt);font-weight:400}
+
+    .attend-row{display:flex;gap:1rem;margin-bottom:2rem}
+    .attend-btn{
+      flex:1;padding:.9rem;border:1px solid rgba(201,168,76,.22);
+      background:transparent;color:var(--muted);font-family:'Outfit',sans-serif;
+      font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:all .3s;
+    }
+    .attend-btn.yes.active{border-color:var(--gold);color:var(--gold-lt);background:rgba(201,168,76,.07)}
+    .attend-btn.no.active{border-color:rgba(255,255,255,.18);color:rgba(255,255,255,.4);background:rgba(255,255,255,.03)}
+
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.2rem}
+    .form-group label{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:500}
+    .form-group input,
+    .form-group select,
+    .form-group textarea{
+      background:var(--black);border:1px solid rgba(201,168,76,.18);padding:.82rem 1rem;
+      font-family:'Outfit',sans-serif;font-size:.88rem;color:var(--warm);
+      outline:none;transition:border-color .25s;-webkit-appearance:none;
+    }
+    .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(154,143,122,.35)}
+    .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold)}
+    .form-group textarea{min-height:88px;resize:vertical}
+    .form-group select{cursor:pointer;color:var(--warm)}
+    .form-group select option{background:var(--ink);color:var(--warm)}
+
+    .pill-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.3rem}
+    .pill{
+      padding:.35rem .9rem;border:1px solid rgba(201,168,76,.18);
+      font-size:.7rem;color:var(--muted);cursor:pointer;
+      transition:all .22s;user-select:none;background:transparent;letter-spacing:.04em;
+    }
+    .pill.active{border-color:var(--gold);color:var(--gold-lt);background:rgba(201,168,76,.07)}
+
+    .btn-rsvp{
+      width:100%;padding:1.1rem;margin-top:.8rem;border:none;
+      background:linear-gradient(110deg,var(--gold-dk) 0%,var(--gold) 40%,var(--gold-lt) 60%,var(--gold) 100%);
+      background-size:200% auto;animation:shimmer 3s linear infinite;
+      color:var(--black);font-family:'Outfit',sans-serif;font-size:.7rem;
+      letter-spacing:.28em;text-transform:uppercase;font-weight:500;cursor:pointer;
+      transition:opacity .25s,transform .2s;
+    }
+    @keyframes shimmer{to{background-position:200% center}}
+    .btn-rsvp:hover{opacity:.88;transform:translateY(-2px)}
+
+    .rsvp-success{display:none;text-align:center;padding:3rem 1rem}
+    .rsvp-success.show{display:block}
+    .suc-ring{
+      width:70px;height:70px;border-radius:50%;border:1px solid var(--gold);
+      display:flex;align-items:center;justify-content:center;
+      margin:0 auto 1.5rem;font-size:1.6rem;color:var(--gold);
+    }
+    .rsvp-success h3{font-family:'Bodoni Moda',serif;font-style:italic;font-weight:300;font-size:1.9rem;color:var(--white);margin-bottom:.6rem}
+    .rsvp-success p{font-size:.83rem;color:var(--muted);line-height:1.75}
+
+    /* ═══ FOOTER ═══ */
+    footer{
+      background:var(--ink);text-align:center;padding:5rem 2rem 4rem;
+      border-top:1px solid rgba(201,168,76,.1);position:relative;
+    }
+    .footer-rule{height:1px;width:180px;margin:0 auto 3rem;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+    .footer-names{
+      font-family:'Bodoni Moda',serif;font-weight:300;
+      font-size:clamp(2.5rem,6vw,4.5rem);color:var(--white);letter-spacing:-.01em;
+    }
+    .footer-names em{font-style:italic;color:var(--gold-lt)}
+    .footer-amp{display:block;font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(1.4rem,3vw,2.4rem);color:var(--gold);margin:.25rem 0}
+    .footer-date{font-size:.62rem;letter-spacing:.35em;text-transform:uppercase;color:var(--muted);margin-top:1.2rem}
+    .footer-copy{font-size:.6rem;color:rgba(154,143,122,.35);margin-top:3rem;letter-spacing:.1em}
+
+    /* ═══ ANIMATIONS ═══ */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+    .reveal{opacity:0;transform:translateY(30px);transition:opacity .9s ease,transform .9s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+    /* ═══ RESPONSIVE ═══ */
+    @media(max-width:900px){
+      .story-grid{grid-template-columns:1fr}
+      .gallery-row{grid-template-columns:1fr 1fr}
+      .sched-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:600px){
+      .hero-frame{inset:13px}
+      .form-row{grid-template-columns:1fr}
+      .rsvp-box{padding:2rem 1.4rem}
+      .sched-grid{grid-template-columns:1fr}
+      .gallery-row{grid-template-columns:1fr}
+      .gallery-row .story-photo:last-child{display:none}
+      .story-text-block{padding:2.2rem}
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <img class="hero-img"
+    src="https://images.unsplash.com/photo-1519741347686-c1e0aadf4611?auto=format&fit=crop&w=1800&q=80"
+    alt="Elegant grand wedding reception"/>
+  <div class="hero-veil"></div>
+  <div class="hero-frame">
+    <div class="corner-gem tl"></div><div class="corner-gem tr"></div>
+    <div class="corner-gem bl"></div><div class="corner-gem br"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">You Are Cordially Invited to Celebrate the Union of</p>
+    <h1 class="hero-names">
+      <em>Sofia</em>
+      <span class="hero-amp">&amp;</span>
+      <em>Gabriel</em>
+    </h1>
+    <div class="hero-rule">
+      <span></span>
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.593c-5.63-5.539-11-10.297-11-14.402 0-3.791 3.068-5.191 5.281-5.191 1.312 0 4.151.501 5.719 4.457 1.59-3.968 4.464-4.447 5.726-4.447 2.54 0 5.274 1.621 5.274 5.181 0 4.069-5.136 8.625-11 14.402z"/></svg>
+      <span></span>
+    </div>
+    <p class="hero-date">Saturday, the Fourteenth of June · Two Thousand Twenty-Six</p>
+    <p class="hero-venue">Grand Ballroom · The Peninsula Manila · Makati City</p>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-dot"></div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<div class="countdown">
+  <p class="cd-label">Counting Down to Forever</p>
+  <div class="cd-wrap">
+    <div class="cd-block"><div class="cd-num" id="cd-days">00</div><div class="cd-unit">Days</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-block"><div class="cd-num" id="cd-hours">00</div><div class="cd-unit">Hours</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-block"><div class="cd-num" id="cd-mins">00</div><div class="cd-unit">Minutes</div></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-block"><div class="cd-num" id="cd-secs">00</div><div class="cd-unit">Seconds</div></div>
+  </div>
+</div>
+
+<!-- OUR STORY -->
+<section class="section story" id="story">
+  <div class="sec-inner">
+    <div class="sec-tag reveal">Our Story</div>
+    <h2 class="sec-title reveal">The Beginning of <em>Forever</em></h2>
+
+    <div class="story-grid">
+      <div class="story-photo reveal">
+        <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=900&q=80" alt="Couple silhouette at golden hour"/>
+        <div class="story-photo-caption">
+          <div class="photo-year">2021</div>
+          <div class="photo-label">Where it all began</div>
+        </div>
+      </div>
+      <div class="story-text-block reveal d1">
+        <div class="story-quote">
+          Two souls, one destiny — written long before we ever knew each other's name.
+        </div>
+        <p class="story-body">
+          It was a quiet Tuesday evening at a gallery opening in BGC when Gabriel 
+          noticed Sofia standing before a painting neither of them could explain. 
+          They stood there talking for three hours, completely forgetting the art on the walls.
+          <br><br>
+          Three years of adventures, morning coffees, late-night conversations, 
+          and one breathtaking proposal under the cherry blossoms of Maruyama Park in Kyoto — 
+          we now invite you to witness the most beautiful chapter yet.
+        </p>
+        <div class="story-signature">Sofia &amp; Gabriel</div>
+      </div>
+    </div>
+
+    <div class="gallery-row">
+      <div class="story-photo reveal">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=1000&q=80" alt="Wedding ceremony aisle"/>
+        <div class="story-photo-caption">
+          <div class="photo-year">2023</div>
+          <div class="photo-label">The proposal — Kyoto</div>
+        </div>
+      </div>
+      <div class="story-photo reveal d1">
+        <img src="https://images.unsplash.com/photo-1550005809-91ad75fb315f?auto=format&fit=crop&w=700&q=80" alt="Champagne toast"/>
+        <div class="story-photo-caption">
+          <div class="photo-year">2024</div>
+          <div class="photo-label">Engagement celebration</div>
+        </div>
+      </div>
+      <div class="story-photo reveal d2">
+        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=700&q=80" alt="Luxury floral wedding décor"/>
+        <div class="story-photo-caption">
+          <div class="photo-year">2026</div>
+          <div class="photo-label">Forever begins</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section class="section schedule" id="schedule">
+  <div class="sec-inner">
+    <div class="sec-tag reveal">June 14, 2026</div>
+    <h2 class="sec-title reveal"><em>Order</em> of Events</h2>
+    <div class="sched-grid">
+      <div class="sched-card reveal">
+        <div class="sched-num">I</div>
+        <div class="sched-time">3<span class="sched-pm">:00</span></div>
+        <div class="sched-name">Guest Arrival</div>
+        <div class="sched-note">Welcome champagne in the grand foyer. Please be seated 15 minutes prior.</div>
+      </div>
+      <div class="sched-card reveal d1">
+        <div class="sched-num">II</div>
+        <div class="sched-time">3<span class="sched-pm">:30</span></div>
+        <div class="sched-name">The Ceremony</div>
+        <div class="sched-note">Grand Chapel · The Peninsula Manila. A moment written in eternity.</div>
+      </div>
+      <div class="sched-card reveal d2">
+        <div class="sched-num">III</div>
+        <div class="sched-time">5<span class="sched-pm">:00</span></div>
+        <div class="sched-name">Cocktail Hour</div>
+        <div class="sched-note">Rooftop Terrace · Canapés, champagne & live string quartet.</div>
+      </div>
+      <div class="sched-card reveal d3">
+        <div class="sched-num">IV</div>
+        <div class="sched-time">7<span class="sched-pm">:00</span></div>
+        <div class="sched-name">Dinner &amp; Dancing</div>
+        <div class="sched-note">Seven-course dinner, first dance &amp; celebration until midnight.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section class="section rsvp" id="rsvp">
+  <div class="sec-inner">
+    <div class="sec-tag reveal">Kindly Reply by 1 May 2026</div>
+    <h2 class="sec-title reveal">Will You <em>Join Us?</em></h2>
+    <div class="rsvp-inner reveal">
+      <div class="rsvp-box">
+        <div class="ca tl"></div><div class="ca tr"></div>
+        <div class="ca bl"></div><div class="ca br"></div>
+
+        <div id="rsvpForm">
+          <p class="rsvp-note">
+            Your presence would be the greatest honour.<br>
+            Please reply by <strong>1 May 2026</strong> to help us prepare a perfect evening.
+          </p>
+
+          <div class="attend-row">
+            <button class="attend-btn yes active" id="btnYes" onclick="setAttend('yes')">✓ &nbsp;Joyfully Accepts</button>
+            <button class="attend-btn no" id="btnNo" onclick="setAttend('no')">Regretfully Declines</button>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" id="rFname" placeholder="Maria"/>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" id="rLname" placeholder="Santos"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="rEmail" placeholder="maria@example.com"/>
+          </div>
+
+          <div class="form-group">
+            <label>Number of Seats</label>
+            <select id="rGuests">
+              <option value="1">1 — Just myself</option>
+              <option value="2" selected>2 — Myself &amp; a guest</option>
+              <option value="3">3 guests</option>
+              <option value="4">4 guests</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Dietary Requirements</label>
+            <div class="pill-row">
+              <div class="pill" onclick="togglePill(this)">None</div>
+              <div class="pill" onclick="togglePill(this)">Vegetarian</div>
+              <div class="pill" onclick="togglePill(this)">Vegan</div>
+              <div class="pill" onclick="togglePill(this)">Gluten-Free</div>
+              <div class="pill" onclick="togglePill(this)">Halal</div>
+              <div class="pill" onclick="togglePill(this)">Nut Allergy</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>A Message for the Couple <span style="text-transform:none;letter-spacing:0;color:var(--muted);font-weight:300">(optional)</span></label>
+            <textarea id="rNote" placeholder="Share your warmest wishes…"></textarea>
+          </div>
+
+          <button class="btn-rsvp" onclick="submitRSVP()">Confirm My RSVP &nbsp;✦</button>
+        </div>
+
+        <div class="rsvp-success" id="rsvpSuccess">
+          <div class="suc-ring">✦</div>
+          <h3 id="successMsg">We are overjoyed!</h3>
+          <p id="successSub">Your RSVP has been received. We look forward to celebrating with you on June 14th.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-rule"></div>
+  <p class="footer-names">
+    <em>Sofia</em>
+    <span class="footer-amp">&amp;</span>
+    <em>Gabriel</em>
+  </p>
+  <p class="footer-date">June 14 &nbsp;✦&nbsp; 2026 &nbsp;✦&nbsp; Makati City, Philippines</p>
+  <p class="footer-copy">Crafted with love &nbsp;·&nbsp; All photography via Unsplash (free to use)</p>
+</footer>
+
+<script>
+  // COUNTDOWN
+  const wDate = new Date('2026-06-14T15:00:00');
+  function tick(){
+    const d = wDate - new Date();
+    if(d<=0) return;
+    document.getElementById('cd-days').textContent  = String(Math.floor(d/86400000)).padStart(2,'0');
+    document.getElementById('cd-hours').textContent = String(Math.floor((d%86400000)/3600000)).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(Math.floor((d%3600000)/60000)).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(Math.floor((d%60000)/1000)).padStart(2,'0');
+  }
+  tick(); setInterval(tick,1000);
+
+  // SCROLL REVEAL
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);} });
+  },{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+  // ATTEND
+  let attending='yes';
+  function setAttend(v){
+    attending=v;
+    document.getElementById('btnYes').classList.toggle('active',v==='yes');
+    document.getElementById('btnNo').classList.toggle('active',v==='no');
+  }
+
+  // PILLS
+  function togglePill(el){el.classList.toggle('active')}
+
+  // RSVP SUBMIT
+  function submitRSVP(){
+    const fname=document.getElementById('rFname').value.trim();
+    const email=document.getElementById('rEmail').value.trim();
+    if(!fname||!email){alert('Please enter your name and email address.');return;}
+    document.getElementById('rsvpForm').style.display='none';
+    const s=document.getElementById('rsvpSuccess');
+    if(attending==='no'){
+      document.getElementById('successMsg').textContent='We will miss you dearly.';
+      document.getElementById('successSub').textContent='Thank you for letting us know, '+fname+'. You will be in our hearts on the day.';
+    } else {
+      document.getElementById('successMsg').textContent='We are overjoyed, '+fname+'!';
+      document.getElementById('successSub').textContent='Your RSVP is confirmed. We cannot wait to celebrate with you on June 14th, 2026 at The Peninsula Manila.';
+    }
+    s.classList.add('show');
+  }
+</script>
+</body>
+</html>
