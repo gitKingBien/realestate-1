@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nova Store | Futuristic Fashion</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070b14;
+      --bg-soft: rgba(255,255,255,0.04);
+      --card: rgba(12, 18, 32, 0.85);
+      --line: rgba(255,255,255,0.10);
+      --text: #eaf2ff;
+      --muted: #9db0d0;
+      --cyan: #4de2ff;
+      --violet: #8b5cf6;
+      --pink: #ff4fd8;
+      --glow: 0 0 30px rgba(77,226,255,.25);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(139,92,246,0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(77,226,255,0.14), transparent 30%),
+        radial-gradient(circle at bottom center, rgba(255,79,216,0.12), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      background: rgba(7, 11, 20, 0.7);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .navbar-brand,
+    .nav-link,
+    .navbar-toggler {
+      color: var(--text) !important;
+    }
+
+    .brand {
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 2px;
+      font-weight: 800;
+    }
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 110px 0 70px;
+    }
+
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.9), transparent 90%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border: 1px solid rgba(77,226,255,0.25);
+      background: rgba(77,226,255,0.08);
+      color: var(--cyan);
+      border-radius: 999px;
+      font-size: 0.9rem;
+      box-shadow: var(--glow);
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.7rem, 7vw, 5.6rem);
+      line-height: 0.95;
+      margin: 18px 0;
+      letter-spacing: 1px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--cyan), #ffffff, var(--pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin-bottom: 28px;
+    }
+
+    .btn-glow {
+      border: none;
+      color: #06111d;
+      background: linear-gradient(90deg, var(--cyan), #b7f5ff);
+      font-weight: 700;
+      box-shadow: 0 0 24px rgba(77,226,255,.35);
+    }
+
+    .btn-outline-future {
+      border: 1px solid rgba(255,255,255,0.18);
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-glow, .btn-outline-future {
+      padding: 14px 22px;
+      border-radius: 14px;
+    }
+
+    .hero-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(77,226,255,.12), transparent 35%, rgba(255,79,216,.12));
+      pointer-events: none;
+    }
+
+    .hero-card img {
+      width: 100%;
+      height: 540px;
+      object-fit: cover;
+      opacity: 0.92;
+    }
+
+    .floating-chip {
+      position: absolute;
+      backdrop-filter: blur(14px);
+      background: rgba(5, 13, 24, 0.72);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px 16px;
+      box-shadow: var(--glow);
+    }
+
+    .chip-top {
+      top: 18px;
+      left: 18px;
+    }
+
+    .chip-bottom {
+      right: 18px;
+      bottom: 18px;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 40px;
+    }
+
+    .glass-box {
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      backdrop-filter: blur(14px);
+    }
+
+    .product-card {
+      height: 100%;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.22);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(77,226,255,0.35);
+      box-shadow: 0 18px 50px rgba(77,226,255,0.12);
+    }
+
+    .product-media {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-media img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      transition: transform .35s ease;
+    }
+
+    .product-card:hover .product-media img {
+      transform: scale(1.05);
+    }
+
+    .badge-future {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: rgba(7, 11, 20, 0.78);
+      border: 1px solid rgba(77,226,255,0.25);
+      color: var(--cyan);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .product-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      height: calc(100% - 280px);
+    }
+
+    .product-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .product-text {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 18px;
+    }
+
+    .price {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--cyan);
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+    }
+
+    .stats-box {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .stat {
+      padding: 18px;
+      text-align: center;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--line);
+    }
+
+    .stat h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--cyan);
+      margin-bottom: 6px;
+      font-size: 1.3rem;
+    }
+
+    .newsletter {
+      background: linear-gradient(135deg, rgba(77,226,255,0.10), rgba(139,92,246,0.12), rgba(255,79,216,0.10));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 36px;
+    }
+
+    .form-control, .form-control:focus {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--line);
+      color: var(--text);
+      box-shadow: none;
+    }
+
+    .form-control::placeholder {
+      color: #93a1bc;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(0,0,0,0.18);
+    }
+
+    .footer-link {
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .footer-link:hover {
+      color: var(--cyan);
+    }
+
+    .tiny-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      display: inline-block;
+      box-shadow: 0 0 14px var(--cyan);
+    }
+
+    @media (max-width: 991px) {
+      .hero {
+        padding-top: 100px;
+        text-align: center;
+      }
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-card img {
+        height: 420px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .hero {
+        min-height: auto;
+        padding: 100px 0 50px;
+      }
+      .hero-card img {
+        height: 340px;
+      }
+      .stats-box {
+        grid-template-columns: 1fr;
+      }
+      .newsletter {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container py-2">
+      <a class="navbar-brand brand" href="#">NOVA</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="#collection">Collection</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item mt-3 mt-lg-0"><a class="btn btn-sm btn-glow" href="#collection">Shop Now</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="grid-bg"></div>
+    <div class="container position-relative">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-6">
+          <div class="hero-badge"><span class="tiny-dot"></span> The next generation of style</div>
+          <h1>Wear the <span>future</span> before everyone else.</h1>
+          <p>Discover a bold e-commerce experience built for trendsetters. Smart silhouettes, neon energy, and a storefront that feels straight out of tomorrow.</p>
+          <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+            <a href="#collection" class="btn btn-glow">Explore Products</a>
+            <a href="#about" class="btn btn-outline-future">Why Nova</a>
+          </div>
+          <div class="glass-box p-3 p-md-4 mt-4">
+            <div class="row g-3 text-center text-lg-start">
+              <div class="col-md-4">
+                <small class="text-secondary d-block">Free Shipping</small>
+                <strong>Worldwide</strong>
+              </div>
+              <div class="col-md-4">
+                <small class="text-secondary d-block">Exclusive Drops</small>
+                <strong>Every Friday</strong>
+              </div>
+              <div class="col-md-4">
+                <small class="text-secondary d-block">Support</small>
+                <strong>24/7 Live</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="hero-card">
+            <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=80" alt="Futuristic fashion product" />
+            <div class="floating-chip chip-top">
+              <small class="d-block text-secondary">Trending Drop</small>
+              <strong>Cyber Luxe Jacket</strong>
+            </div>
+            <div class="floating-chip chip-bottom">
+              <small class="d-block text-secondary">Launch Price</small>
+              <strong>$249</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5" id="collection">
+    <div class="container py-4">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Featured Collection</h2>
+        <p class="section-subtitle">Six sleek product cards with a high-tech visual style, built to feel premium on desktop and sharp on mobile.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-12 col-md-6 col-xl-4">
+          <div class="product-card">
+            <div class="product-media">
+              <span class="badge-future">New Drop</span>
+              <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80" alt="Cyber jacket" />
+            </div>
+            <div class="product-body">
+              <div>
+                <h3 class="product-title">Cyber Luxe Jacket</h3>
+                <p class="product-text">Minimal lines, reflective textures, and a silhouette designed for night-city energy.</p>
+              </div>
+              <div>
+                <div class="price">$249</div>
+                <a href="#" class="btn btn-glow w-100">Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4">
+          <div class="product-card">
+            <div class="product-media">
+              <span class="badge-future">Best Seller</span>
+              <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=80" alt="Futuristic outfit" />
+            </div>
+            <div class="product-body">
+              <div>
+                <h3 class="product-title">Neon Pulse Suit</h3>
+                <p class="product-text">Sharp tailoring with a futuristic edge for creators who want to stand out instantly.</p>
+              </div>
+              <div>
+                <div class="price">$319</div>
+                <a href="#" class="btn btn-glow w-100">Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4">
+          <div class="product-card">
+            <div class="product-media">
+              <span class="badge-future">Limited</span>
+              <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80" alt="Techwear fashion" />
+            </div>
+            <div class="product-body">
+              <div>
+                <h3 class="product-title">Prism Shift Dress</h3>
+                <p class="product-text">Flowing movement meets holographic-inspired styling in a design that catches every light.</p>
+              </div>
+              <div>
+                <div class="price">$279</div>
+                <a href="#" class="btn btn-glow w-100">Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4">
+          <div class="product-card">
+            <div class="product-media">
+              <span class="badge-future">Hot</span>
+              <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80" alt="Futuristic glasses" />
+            </div>
+            <div class="product-body">
+              <div>
+                <h3 class="product-title">Quantum Visor</h3>
+                <p class="product-text">A statement accessory with sleek geometry and a bold editorial-tech attitude.</p>
+              </div>
+              <div>
+                <div class="price">$129</div>
+                <a href="#" class="btn btn-glow w-100">Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4">
+          <div class="product-card">
+            <div class="product-media">
+              <span class="badge-future">Editor Pick</span>
+              <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=80" alt="Future bag" />
+            </div>
+            <div class="product-body">
+              <div>
+                <h3 class="product-title">Orbit Utility Bag</h3>
+                <p class="product-text">Functional storage with a clean, elevated look built for urban movement and daily edge.</p>
+              </div>
+              <div>
+                <div class="price">$159</div>
+                <a href="#" class="btn btn-glow w-100">Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-4">
+          <div class="product-card">
+            <div class="product-media">
+              <span class="badge-future">Signature</span>
+              <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80" alt="Luxury shoes" />
+            </div>
+            <div class="product-body">
+              <div>
+                <h3 class="product-title">Volt Runner X</h3>
+                <p class="product-text">High-comfort sneakers wrapped in futuristic styling for a fast, confident everyday look.</p>
+              </div>
+              <div>
+                <div class="price">$189</div>
+                <a href="#" class="btn btn-glow w-100">Add to Cart</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5" id="about">
+    <div class="container py-4">
+      <div class="row g-4 align-items-center">
+        <div class="col-lg-6">
+          <h2 class="section-title">A store built to feel ahead of its time.</h2>
+          <p class="section-subtitle m-0">Nova blends sharp e-commerce structure with a futuristic visual system: glassmorphism, neon accents, bold typography, and premium spacing that feels cool instead of cluttered.</p>
+        </div>
+        <div class="col-lg-6">
+          <div class="stats-box">
+            <div class="stat">
+              <h3>120K+</h3>
+              <div>Style Followers</div>
+            </div>
+            <div class="stat">
+              <h3>98%</h3>
+              <div>Happy Buyers</div>
+            </div>
+            <div class="stat">
+              <h3>48H</h3>
+              <div>Fast Delivery</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5" id="contact">
+    <div class="container py-4">
+      <div class="newsletter">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <h2 class="section-title mb-2">Stay in the loop.</h2>
+            <p class="section-subtitle m-0">Get product drops, launch alerts, and exclusive early access sent straight to your inbox.</p>
+          </div>
+          <div class="col-lg-6">
+            <form class="row g-3">
+              <div class="col-12">
+                <input type="email" class="form-control form-control-lg" placeholder="Enter your email address" />
+              </div>
+              <div class="col-12 d-grid">
+                <button type="submit" class="btn btn-glow btn-lg">Subscribe Now</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-4">
+    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <div>
+        <strong class="brand">NOVA</strong>
+        <span class="ms-2">© 2026 All rights reserved.</span>
+      </div>
+      <div class="d-flex gap-3">
+        <a href="#" class="footer-link">Instagram</a>
+        <a href="#" class="footer-link">TikTok</a>
+        <a href="#" class="footer-link">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
